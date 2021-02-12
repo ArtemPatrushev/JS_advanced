@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo -u postgres psql -c "CREATE ROLE it_academy WITH ENCRYPTED PASSWORD '123' LOGIN;"
+sudo -u postgres psql -c "CREATE DATABASE it_academy OWNER it_academy;"

@@ -1,0 +1,3 @@
+#!/bin/bash
+psql -h 127.0.0.1 -U it_academy -d it_academy
+#Далее вводится пароль '123'

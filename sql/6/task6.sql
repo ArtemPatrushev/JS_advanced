@@ -1,0 +1,1 @@
+UPDATE Users SET first_name='Justin Peter' WHERE id=(SELECT user_id FROM Orders ORDER BY id LIMIT 1);
