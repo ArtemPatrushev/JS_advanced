@@ -1,1 +1,0 @@
-UPDATE Products SET title='Jack Daniels 100 l.' WHERE id=1;

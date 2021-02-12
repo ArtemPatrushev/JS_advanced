@@ -1,0 +1,54 @@
+.product_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 450px;
+  width: 950px;
+}
+
+.product_item .product_item_group {
+  margin-bottom: 38px;
+}
+
+.product_item .product_item_group:not(:last-child) {
+  margin-right: 15px;
+}
+
+.product_item .product_item_group .product_item_img img {
+  width: 100%;
+}
+
+.product_item .product_item_group .product_name {
+  margin: 19px 15px 0 15px;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #6f6e6e;
+}
+
+.product_item .product_item_group .product_cost {
+  margin: 17px 15px 21px 15px;
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #f16d7f;
+}
+
+.product_item .product_item_group button {
+  width: 100px;
+  height: 30px;
+  background-color: orange;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=style-HW1.css.map */
