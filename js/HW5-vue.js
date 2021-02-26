@@ -1,0 +1,96 @@
+BASE_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+const app = new Vue({
+    el: '#root',
+    data: {
+        goods: [],
+        filteredGoods: [],
+        searchGoods: '',
+        cartGoods: [],
+        filteredCartGoods: [],
+        searchCartGoods: '',
+        showCart: false,
+        cost: 0,
+        errorMessage: '',
+    },
+    methods: {
+
+        cleanCart() {
+            this.cartGoods = [];
+            this.filteredCartGoods = [];
+        },
+
+        getCost() {
+            let sum = 0;
+            this.cartGoods.forEach(i => {
+                sum += i.price * i.quantity;
+            });
+            this.cost = sum;
+        },
+
+        getGoods() {
+            fetch(`${BASE_URL}/catalogData.json`)
+                .then(r => r.json())
+                .then(r => {
+                    this.goods = r;
+                    this.filteredGoods = this.goods;
+                })
+                .catch(e => {
+                    this.errorMessage = e;
+                });
+        },
+
+        filterGoods() {
+            if (!this.goods.length) this.filteredGoods = [];
+            if (!this.searchGoods) this.filteredGoods = this.goods;
+            this.filteredGoods = this.goods.filter(i => i.product_name.toLowerCase().includes(this.searchGoods));
+        },
+
+        filterCartGoods() {
+            if (!this.cartGoods.length) this.filteredCartGoods = [];
+            if (!this.searchCartGoods) this.filteredCartGoods = this.cartGoods;
+            this.filteredCartGoods = this.cartGoods.filter(i => i.product_name.toLowerCase().includes(this.searchCartGoods));
+        },
+
+        addToCart(item) {
+            let existant = false;
+            for (const goodsItem of this.cartGoods) {
+                if (goodsItem.id_product === item.id_product) {
+                    existant = true;
+                    goodsItem.quantity += 1;
+                }
+            }
+            if (!existant) {
+                this.cartGoods.push({ ...item, quantity: 1 })
+            }
+            this.filterCartGoods();
+        },
+
+        removeFromCart(item) {
+            const index = this.cartGoods.findIndex(x => x.id_product === item.id_product);
+            if (this.cartGoods[index].quantity > 1) {
+                this.cartGoods[index].quantity--;
+            } else {
+                this.cartGoods = this.cartGoods.filter(x => x.id_product !== item.id_product);
+            }
+            this.filterCartGoods();
+        },
+
+        toggleCart() {
+            this.showCart = !this.showCart;
+        },
+
+    },
+    // данный метод работал напрямую с инпутом и при изменении инпута сразу реагировал
+    // computed: {
+    //     filteredGoods() {
+    //         if (!this.goods.length) return [];
+    //         if (!this.searchGoods) return this.goods;
+    //         return this.goods.filter(i => i.product_name.toLowerCase().includes(this.searchGoods.toLowerCase()));
+    //     },
+    // },
+    mounted() {
+        this.getGoods();
+    },
+});
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style-HW1.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root">
+        <input type="search" placeholder="Поиск" v-model="searchGoods">
+        <button @click="filterGoods">
+            Поиск
+        </button>
+        <div class="product_item">
+            <div class="product_item_group" v-for="item in filteredGoods">
+                <div class="product_item_img">
+                    <img src="${this.img}" alt="photo">
+                    <p class="product_name">
+                        {{item.product_name}}
+                    </p>
+                    <p class="product_cost">
+                        {{item.price}} р
+                    </p>
+                    <button @click="addToCart(item)">
+                        В корзину
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="product-sum"></div>
+        <hr><hr><hr>
+        <button @click="toggleCart()">{{showCart ? "Close cart" : "Show cart"}}</button>
+        <div class="cart-block" v-if="showCart">
+            <input type="search" placeholder="Поиск" v-model="searchCartGoods">
+            <button @click="filterCartGoods">
+                Поиск
+            </button>
+            <div class="cart">
+                <div class="product_item_group" v-for="item in filteredCartGoods">
+                    <div class="product_item_img">
+                        <img alt="photo">
+                        <p class="product_name">
+                            {{item.product_name}}
+                        </p>
+                        <p class="product_cost">
+                            {{item.price}} р
+                        </p>
+                        <p>Количество товара {{item.quantity}}</p>
+                        <button @click="removeFromCart(item)">
+                            Удалить из корзины
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="sum" v-on="getCost()">{{cost}}</div>
+            <button @click="cleanCart">Очистить корзину</button>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./js/HW5-vue.js"></script>
+</body>
+
+</html>
