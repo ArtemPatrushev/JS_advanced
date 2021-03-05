@@ -61,4 +61,12 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
+
+.goods-list-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: inherit;
+  height: inherit;
+}
 /*# sourceMappingURL=style-HW1.css.map */

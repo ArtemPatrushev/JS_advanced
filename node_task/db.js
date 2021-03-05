@@ -1,0 +1,10 @@
+const db = {
+  products: [
+    { id_product: 1, product_name: "Ноутбук", price: 45600 },
+    { id_product: 2, product_name: "Мышка", price: 1000 }
+  ],
+};
+
+module.exports = {
+  db
+};
