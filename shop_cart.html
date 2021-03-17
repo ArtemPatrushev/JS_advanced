@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/style_shop_cart.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">BRAN<span>D</span></a>
+            <form class="header_search_form" action="#">
+                <a href="#" class="header_browse">
+                    Browse<i class="fas fa-caret-down"></i>
+                </a>
+                <input type="text" placeholder="Search for Item...">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+            <div class="header_cart">
+                <a href="#"><img class="cart_img_header" src="img/cart.png" alt="photo"></a>
+                <button class="account_button">My Account<i class="fas fa-caret-down"></i></button>
+            </div>
+        </div>
+    </header>
+    <nav class="top_nav">
+        <a href="grid_index.html">Home</a>
+        <a href="product.html">Man</a>
+        <a href="single_page.html">Women</a>
+        <a href="#">Kids</a>
+        <a href="#">Accoseriese</a>
+        <a href="#">Featured</a>
+        <a href="#">Hot</a>
+        <a href="checkout.html">Deals</a>
+    </nav>
+    <div class="new_arrivals">
+        <div class="container">
+            <p class="left_text">
+                NEW ARRIVALS
+            </p>
+            <div class="arrivals_links">
+                <a href="#" class="home">HOME/</a>
+                <a href="#" class="men">MEN/</a>
+                <a href="#" class="arrivals">NEW ARRIVALS</a>
+            </div>
+        </div>
+    </div>
+    <div id="root">
+        <main class="cart">
+            <div class="container">
+                <div class="shopping_grid_row">
+                    <div class="cart_product">
+                        <p>PRODUCT DETAILS</p>
+                    </div>
+                    <div class="product_information product_information_head">
+                        <p class="unity_price">UNITY PRICE</p>
+                        <p class="quantity">QUANTITY</p>
+                        <p class="shipping">SHIPPING</p>
+                        <p class="subtotal">SUBTOTAL</p>
+                        <p class="action">ACTION</p>
+                    </div>
+                </div>
+                <div class="block">
+                    <app-cart :cart-goods="filteredCartGoods" @remove-from-cart="removeFromCart" @get-cost="getCost"></app-cart>
+                </div>
+                <div class="cart_manage">
+                    <button class="cart_manage_button" @click="cleanCart()">CLEAR SHOPPING CART</button>
+                    <button class="cart_manage_button">CONTINUE SHOPPING</button>
+                </div>
+            </div>
+        </main>
+        <div class="cart_user_form">
+            <div class="container">
+                <form class="shipping_addres" action="#">
+                    <p class="user_form_head">Shipping Adress</p>
+                    <input class="user_form_input" type="text" placeholder="Bangladesh">
+                    <!-- добавить caret down -->
+                    <input class="user_form_input" type="text" placeholder="State">
+                    <input class="user_form_input" type="text" placeholder="Postcode/Zip">
+                    <button class="user_form_button">get a quote</button>
+                </form>
+                <form class="cart_user_coupon" action="#">
+                    <p class="user_form_head">Coupon discount</p>
+                    <p class="user_form_text">Enter your coupon code if you have one</p>
+                    <input class="user_form_input" type="text" placeholder="State">
+                    <button class="user_form_button">Apply coupon</button>
+                </form>
+                <div class="cart_total">
+                    <div class="total_sum">
+                        <p class="total_text_top">Sub total<span v-on="getCost()">${{cost}}</span></p>
+                        <p class="total_text_bottom">GRAND TOTAL<span v-on="getCost()">${{cost}}</span></p>
+                    </div>
+                    <button class="cart_buy_button"><span>Proceed to checkout</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feedback_subscribe_block">
+        <div class="container">
+            <div class="feedback">
+                <img class="feedback_img" src="img/feedback_img-removebg-preview.png" alt="photo">
+                <div class="feedback_content">
+                    <p class="feedback_text_top">
+                        “Vestibulum quis porttitor dui! Quisque viverra nunc mi,
+                        a pulvinar purus condimentum a. Aliquam condimentum mattis neque sed pretium”
+                    </p>
+                    <p class="feedback_text_bottom">
+                        <span>Bin Burhan</span>
+                        Dhaka, Bd
+                    </p>
+                    <div class="feedback_points">
+                        <div class="feedback_point1"></div>
+                        <div class="feedback_point1"></div>
+                        <div class="feedback_point1"></div>
+                    </div>
+                </div>
+            </div>
+            <section class="subscribe">
+                <h2 class="subscribe_text_top">
+                    SUBSCRIBE
+                </h2>
+                <h6 class="subscribe_text_bottom">
+                    FOR OUR NEWLETTER AND PROMOTION
+                </h6>
+                <form class="subscribe_form" action="#">
+                    <input type="email" placeholder="Enter Your Email">
+                    <button>Subscribe</button>
+                </form>
+            </section>
+        </div>
+    </div>
+    <div class="brand_information">
+        <div class="container">
+            <div class="brand_content">
+                <a href="" class="logo">BRAN<span>D</span></a>
+                <p class="brand_content_text_top">
+                    Objectively transition extensive data rather than cross functional solutions. Monotonectally
+                    syndicate multidisciplinary
+                    materials before go forward benefits. Intrinsicly syndicate an expanded array of processes and
+                    cross-unit partnerships.
+                </p>
+                <p class="brand_content_text_bottom">
+                    Efficiently plagiarize 24/365 action items and focused infomediaries.
+                    Distinctively seize superior initiatives for wireless technologies. Dynamically optimize.
+                </p>
+            </div>
+            <nav class="brand_nav">
+                <div class="company">
+                    <span>COMPANY</span>
+                    <a href="#" class="company_links">Home</a>
+                    <a href="#" class="company_links">Shop</a>
+                    <a href="#" class="company_links">About</a>
+                    <a href="#" class="company_links">How It Works</a>
+                    <a href="#" class="company_links">Contact</a>
+                </div>
+                <div class="information">
+                    <span>INFORMATION</span>
+                    <a href="#" class="information_links">Tearms & Condition</a>
+                    <a href="#" class="information_links">Privacy Policy</a>
+                    <a href="#" class="information_links">How to Buy</a>
+                    <a href="#" class="information_links">How to Sell</a>
+                    <a href="#" class="information_links">Promotion</a>
+                </div>
+                <div class="shop_category">
+                    <span>SHOP CATEGORY</span>
+                    <a href="#" class="shop_category_links">Men</a>
+                    <a href="#" class="shop_category_links">Women</a>
+                    <a href="#" class="shop_category_links">Child</a>
+                    <a href="#" class="shop_category_links">Apparel</a>
+                    <a href="#" class="shop_category_links">Brows All</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="copy">
+                &copy; 2020 Brand All Rights Reserved.
+            </div>
+            <div class="footer_links">
+                <a href="https://facebook.com" class="web_links" target="blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="web_links" target="blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://dostup-linkedin.com/" class="web_links" target="blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://pinterest.ru" class="web_links" target="blank"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://plus.google.com" class="web_links" target="blank"><i class="fab fa-google-plus-g"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./js/project.js"></script>
+
+</body>
+
+</html>
