@@ -8,7 +8,7 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const cart = [];
+let cart = [];
 
 const findIndexInCart = (id) => cart.findIndex((x) => x.id_product === id);
 
@@ -23,9 +23,10 @@ app.get('/cart', (_, res) => {
 });
 
 // add new product to cart
-app.put('/cart', (req, res) => {
+app.post('/cart', (req, res) => {
   const { id } = req.body;
-  const item = db.products.find((x) => x.id_product === id);
+  console.log(req.body);
+  const item = db.products.find((x) => x.id_product == id);
   if (!item) {
     res.statusCode = 404;
   } else {
@@ -33,19 +34,23 @@ app.put('/cart', (req, res) => {
     if (index === -1) cart.push({ ...item, count: 1 });
     else cart[index].count++;
   }
-  res.send();
+  res.send(JSON.stringify(cart));
 });
 
 // delete product from cart
 app.delete('/cart', (req, res) => {
   const { id } = req.query;
+  if (!id) {
+    cart = [];
+  }
   const index = findIndexInCart(+id);
   if (index !== -1) {
     if (cart[index].count > 1) cart[index].count--;
     else cart = [...cart.slice(0, index), ...cart.slice(index + 1, cart.length)];
   }
-  res.send();
+  res.send(JSON.stringify(cart));
 });
+
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
